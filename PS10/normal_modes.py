@@ -15,15 +15,15 @@ for i in range(n):
 w, v = np.linalg.eigh(mat)
 
 sort_index = np.argsort(w)
-t = np.arange(n)
+t = np.arange(n+2)
+amplitude = np.zeros(n+2)
 
 fig = plt.figure(4, figsize = (10,8))
 for i in range(4):
     index = sort_index[i]
     subplot = fig.add_subplot(2,2,i+1)
-    amplitude = np.zeros(v[:, index].shape[0]+2)
     amplitude[1:-1] = v[:, index]
     subplot.plot(t, amplitude, '-o')
-    subplot.set_xlim(0, n-1)
+    subplot.set_xlim(0, n+1)
     subplot.set_title(r'Frequency=%.3f$\omega_0$'%np.sqrt(w[index]))
 plt.savefig('ps10_3.png', dpi=190)
